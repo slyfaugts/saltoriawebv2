@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Saltoria Community — Unified Dashboard & Creator Hub</title>
+  <link rel="stylesheet" href="/assets/css/design-system.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <aside id="saltoria-sidebar" class="sidebar"></aside>
+    <div class="main-wrapper">
+      <header id="saltoria-topbar" class="topbar"></header>
+      <main class="content-area">
+        <div class="page-header">
+          <div>
+            <h1 class="page-title">Saltoria Command Center</h1>
+            <p class="page-desc">Pusat ekosistem pengembangan game Roblox, sistem modular, dan creator tools dalam satu antarmuka terpadu.</p>
+          </div>
+          <div style="display:flex;gap:10px;">
+            <a href="/tools/lyric-converter.html" class="btn btn-primary">⚡ Buka Creator Tools</a>
+            <a href="/catalog.html" class="btn btn-secondary">Lihat Katalog</a>
+          </div>
+        </div>
+
+        <!-- KPI Stats -->
+        <div class="grid-stats">
+          <div class="card">
+            <div class="stat-label">Modular Roblox Kits</div>
+            <div class="stat-value">12+</div>
+            <span class="tag tag-cyan">Club Kit Gen 5 • Summit Kit</span>
+          </div>
+          <div class="card">
+            <div class="stat-label">Published Experiences</div>
+            <div class="stat-value">8 Maps</div>
+            <span class="tag tag-purple">Vierra Peak • Pulau Fest</span>
+          </div>
+          <div class="card">
+            <div class="stat-label">Creator Web Tools</div>
+            <div class="stat-value">3 Active</div>
+            <span class="tag tag-emerald">Unified Design System</span>
+          </div>
+          <div class="card">
+            <div class="stat-label">Architecture Standard</div>
+            <div class="stat-value">100%</div>
+            <span class="tag tag-cyan">Tag-Based & Strict Luau</span>
+          </div>
+        </div>
+
+        <!-- Quick Access Tools -->
+        <div class="card-header" style="margin-top:10px;">
+          <h2 class="card-title" style="font-size:18px;">Creator & Developer Tools (Unified Layout)</h2>
+          <span style="font-size:12.5px;color:var(--text-secondary);">Tema & navigasi seragam di seluruh modul</span>
+        </div>
+
+        <div class="grid-cards" style="margin-bottom:28px;">
+          <div class="card">
+            <div class="card-header">
+              <span class="tag tag-cyan">Audio & Music Player</span>
+              <span>🎵</span>
+            </div>
+            <h3 class="card-title" style="margin-bottom:8px;">LRC to Lua Lyric Converter</h3>
+            <p style="font-size:13.5px;color:var(--text-secondary);margin-bottom:18px;">Konversi file lirik bertimestamp (.lrc) langsung menjadi tabel Luau siap pakai untuk sistem music player Roblox.</p>
+            <a href="/tools/lyric-converter.html" class="btn btn-secondary" style="width:100%;">Jalankan Tool →</a>
+          </div>
+
+          <div class="card">
+            <div class="card-header">
+              <span class="tag tag-purple">Roblox Studio Automation</span>
+              <span>🛠️</span>
+            </div>
+            <h3 class="card-title" style="margin-bottom:8px;">Studio Batch Command Generator</h3>
+            <p style="font-size:13.5px;color:var(--text-secondary);margin-bottom:18px;">Generate skrip Command Bar otomatis untuk pemasangan CollectionService Tag, optimasi RenderFidelity, & batch asset.</p>
+            <a href="/tools/command-generator.html" class="btn btn-secondary" style="width:100%;">Jalankan Tool →</a>
+          </div>
+
+          <div class="card">
+            <div class="card-header">
+              <span class="tag tag-emerald">Community Integration</span>
+              <span>📡</span>
+            </div>
+            <h3 class="card-title" style="margin-bottom:8px;">Discord Webhook & Embed Tester</h3>
+            <p style="font-size:13.5px;color:var(--text-secondary);margin-bottom:18px;">Uji kirim notifikasi donasi, update map, atau pengumuman turnamen ke channel Discord dengan preview embed instan.</p>
+            <a href="/tools/webhook-tester.html" class="btn btn-secondary" style="width:100%;">Jalankan Tool →</a>
+          </div>
+        </div>
+
+        <!-- Featured Release -->
+        <div class="card">
+          <div class="grid-2col" style="align-items:center;">
+            <div>
+              <span class="tag tag-purple" style="margin-bottom:12px;">FEATURED RELEASE</span>
+              <h2 style="font-size:22px;font-weight:800;margin-bottom:10px;">Premium Summit Kit & Club Kit Gen 5</h2>
+              <p style="font-size:14px;color:var(--text-secondary);margin-bottom:18px;">
+                Dirancang dengan arsitektur decoupled berbasis CollectionService, optimasi perangkat mobile, serta dukungan integrasi donasi lokal & Robux.
+              </p>
+              <div style="display:flex;gap:10px;flex-wrap:wrap;">
+                <a href="/catalog.html" class="btn btn-primary">Jelajahi Semua Kit</a>
+                <button onclick="showToast('Dokumentasi modul siap diakses di katalog!')" class="btn btn-secondary">Cek Spesifikasi</button>
+              </div>
+            </div>
+            <div>
+              <img src="/assets/projects/premium-summit-kit.svg" alt="Premium Summit Kit Banner" style="width:100%;border-radius:12px;border:1px solid var(--border-subtle);" />
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+  <script src="/assets/js/app.js"></script>
+  <script>initSaltoriaLayout("dashboard", "Overview Dashboard");</script>
+</body>
+</html>

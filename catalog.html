@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Studio Kits & Maps — Saltoria Community</title>
+  <link rel="stylesheet" href="/assets/css/design-system.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <aside id="saltoria-sidebar" class="sidebar"></aside>
+    <div class="main-wrapper">
+      <header id="saltoria-topbar" class="topbar"></header>
+      <main class="content-area">
+        <div class="page-header">
+          <div>
+            <h1 class="page-title">Studio Kits, Maps & Store</h1>
+            <p class="page-desc">Katalog sistem modular Roblox, mini-game open-source, dan pengalaman map karya Saltoria Studio.</p>
+          </div>
+        </div>
+
+        <div class="filter-bar">
+          <button class="filter-btn active" onclick="filterItems('all', this)">Semua Rilis</button>
+          <button class="filter-btn" onclick="filterItems('kit', this)">System Kits</button>
+          <button class="filter-btn" onclick="filterItems('map', this)">Roblox Maps</button>
+          <button class="filter-btn" onclick="filterItems('minigame', this)">Mini-Games</button>
+        </div>
+
+        <div class="grid-cards" id="catalog-grid">
+          <div class="card catalog-item" data-cat="kit">
+            <div class="card-header">
+              <span class="tag tag-cyan">System Kit</span>
+              <span class="tag tag-purple">v5.1+</span>
+            </div>
+            <h3 class="card-title" style="margin-bottom:8px;">Premium Summit Kit</h3>
+            <p style="font-size:13.5px;color:var(--text-secondary);margin-bottom:16px;">Sistem checkpoint pendakian, speedrun timer, global leaderboard, dan custom overhead title.</p>
+            <button onclick="showToast('Info Premium Summit Kit disalin!')" class="btn btn-primary" style="width:100%;">Dapatkan Kit</button>
+          </div>
+
+          <div class="card catalog-item" data-cat="kit">
+            <div class="card-header">
+              <span class="tag tag-cyan">System Kit</span>
+              <span class="tag tag-purple">v7.2</span>
+            </div>
+            <h3 class="card-title" style="margin-bottom:8px;">Club Kit Gen 5</h3>
+            <p style="font-size:13.5px;color:var(--text-secondary);margin-bottom:16px;">Sistem stage lighting, synced music player, VIP access control, dan efek visual panggung.</p>
+            <button onclick="showToast('Info Club Kit Gen 5 disalin!')" class="btn btn-primary" style="width:100%;">Dapatkan Kit</button>
+          </div>
+
+          <div class="card catalog-item" data-cat="kit">
+            <div class="card-header">
+              <span class="tag tag-cyan">Donation System</span>
+              <span class="tag tag-emerald">Multi-Platform</span>
+            </div>
+            <h3 class="card-title" style="margin-bottom:8px;">SLTR_DonationFX</h3>
+            <p style="font-size:13.5px;color:var(--text-secondary);margin-bottom:16px;">Efek notifikasi donasi indoor/outdoor dengan dukungan Saweria, SociaBuzz, BagiBagi, Trakteer & Robux.</p>
+            <button onclick="showToast('Info SLTR_DonationFX disalin!')" class="btn btn-primary" style="width:100%;">Dapatkan Kit</button>
+          </div>
+
+          <div class="card catalog-item" data-cat="map">
+            <div class="card-header">
+              <span class="tag tag-purple">Roblox Experience</span>
+              <span class="tag tag-emerald">Published</span>
+            </div>
+            <h3 class="card-title" style="margin-bottom:8px;">Vierra Peak</h3>
+            <p style="font-size:13.5px;color:var(--text-secondary);margin-bottom:16px;">Map pendakian gunung dengan fitur carry, title eksklusif, dan jalur balap kompetitif.</p>
+            <button onclick="showToast('Link pengalaman Vierra Peak siap dibuka!')" class="btn btn-secondary" style="width:100%;">Lihat Detail</button>
+          </div>
+
+          <div class="card catalog-item" data-cat="map">
+            <div class="card-header">
+              <span class="tag tag-purple">Roblox Experience</span>
+              <span class="tag tag-emerald">Published</span>
+            </div>
+            <h3 class="card-title" style="margin-bottom:8px;">Pulau Fest & Sector V</h3>
+            <p style="font-size:13.5px;color:var(--text-secondary);margin-bottom:16px;">Hub sosial dan hangout interaktif yang dioptimalkan untuk performa tinggi di perangkat mobile.</p>
+            <button onclick="showToast('Detail Pulau Fest & Sector V ditampilkan!')" class="btn btn-secondary" style="width:100%;">Lihat Detail</button>
+          </div>
+
+          <div class="card catalog-item" data-cat="minigame">
+            <div class="card-header">
+              <span class="tag tag-emerald">Modular Pack</span>
+              <span class="tag tag-cyan">15+ Games</span>
+            </div>
+            <h3 class="card-title" style="margin-bottom:8px;">Saltoria Mini-Games Bundle</h3>
+            <p style="font-size:13.5px;color:var(--text-secondary);margin-bottom:16px;">Koleksi catur, ludo, uno, domino, billiard, air hockey, dan boxing siap pasang ke dalam map.</p>
+            <button onclick="showToast('Daftar Mini-Games Bundle disalin!')" class="btn btn-secondary" style="width:100%;">Lihat Detail</button>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+  <script src="/assets/js/app.js"></script>
+  <script>
+    initSaltoriaLayout("catalog", "Studio Kits & Maps");
+    function filterItems(category, btn) {
+      document.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      document.querySelectorAll(".catalog-item").forEach(card => {
+        if (category === "all" || card.dataset.cat === category) {
+          card.style.display = "block";
+        } else {
+          card.style.display = "none";
+        }
+      });
+    }
+  </script>
+</body>
+</html>
