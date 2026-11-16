@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="420" viewBox="0 0 800 420">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#090D16"/>
+      <stop offset="100%" stop-color="#161F33"/>
+    </linearGradient>
+    <linearGradient id="neon" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#00F0FF"/>
+      <stop offset="100%" stop-color="#8B5CF6"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="420" fill="url(#bg)"/>
+  <circle cx="680" cy="80" r="140" fill="#00F0FF" opacity="0.08"/>
+  <circle cx="140" cy="340" r="160" fill="#8B5CF6" opacity="0.1"/>
+  <rect x="48" y="48" width="704" height="324" rx="20" fill="none" stroke="url(#neon)" stroke-width="2" opacity="0.5"/>
+  <text x="80" y="130" fill="#00F0FF" font-family="sans-serif" font-size="16" font-weight="bold" letter-spacing="3">SALTORIA STUDIO • ROBLOX SYSTEM KIT</text>
+  <text x="80" y="195" fill="#FFFFFF" font-family="sans-serif" font-size="44" font-weight="800">Premium Summit Kit</text>
+  <text x="80" y="240" fill="#94A3B8" font-family="sans-serif" font-size="20">Checkpoint Tracking • Speedrun Leaderboards • Overhead Titles</text>
+  <rect x="80" y="285" width="160" height="42" rx="8" fill="url(#neon)"/>
+  <text x="160" y="312" fill="#05080F" font-family="sans-serif" font-size="15" font-weight="bold" text-anchor="middle">VERSION 5.1+</text>
+</svg>
