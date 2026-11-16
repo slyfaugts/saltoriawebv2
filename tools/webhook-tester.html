@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Discord Webhook Hub — Saltoria Tools</title>
+  <link rel="stylesheet" href="/assets/css/design-system.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <aside id="saltoria-sidebar" class="sidebar"></aside>
+    <div class="main-wrapper">
+      <header id="saltoria-topbar" class="topbar"></header>
+      <main class="content-area">
+        <div class="page-header">
+          <div>
+            <h1 class="page-title">Discord Webhook & Embed Tester</h1>
+            <p class="page-desc">Simulasikan dan kirim pesan Embed Discord untuk pengumuman rilis kit, turnamen, atau sistem donasi.</p>
+          </div>
+          <span class="tag tag-emerald">Live Preview & Sender</span>
+        </div>
+
+        <div class="grid-2col">
+          <div class="card">
+            <div class="card-header">
+              <h2 class="card-title">Konfigurasi Webhook</h2>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Discord Webhook URL</label>
+              <input type="url" id="wh-url" class="form-control" placeholder="https://discord.com/api/webhooks/..." />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Judul Embed</label>
+              <input type="text" id="wh-title" class="form-control" value="🚀 Update Rilis Saltoria Studio" oninput="updatePreview()" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Deskripsi Pesan</label>
+              <textarea id="wh-desc" class="form-textarea" rows="4" oninput="updatePreview()">Pembaruan sistem modular dan optimasi performa server telah aktif!</textarea>
+            </div>
+            <button onclick="sendWebhook()" class="btn btn-primary" style="width:100%;">📡 Kirim Test Webhook</button>
+          </div>
+
+          <div class="card">
+            <div class="card-header">
+              <h2 class="card-title">Live Discord Embed Preview</h2>
+            </div>
+            <div style="background:#1E2124;border-left:4px solid var(--accent-cyan);border-radius:8px;padding:16px;">
+              <div style="font-size:11px;color:var(--accent-cyan);font-weight:700;margin-bottom:4px;">SALTORIA BOT • APP</div>
+              <div id="prev-title" style="font-size:15px;font-weight:700;color:#FFFFFF;margin-bottom:6px;">🚀 Update Rilis Saltoria Studio</div>
+              <div id="prev-desc" style="font-size:13.5px;color:#DCDDDE;white-space:pre-line;">Pembaruan sistem modular dan optimasi performa server telah aktif!</div>
+              <div style="font-size:11px;color:#72767D;margin-top:12px;">Saltoria Community System • Hari ini</div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+  <script src="/assets/js/app.js"></script>
+  <script>
+    initSaltoriaLayout("webhook-tester", "Tools / Discord Webhook Hub");
+
+    function updatePreview() {
+      document.getElementById("prev-title").innerText = document.getElementById("wh-title").value || "Judul Embed";
+      document.getElementById("prev-desc").innerText = document.getElementById("wh-desc").value || "Deskripsi pesan...";
+    }
+
+    async function sendWebhook() {
+      const url = document.getElementById("wh-url").value.trim();
+      const title = document.getElementById("wh-title").value.trim();
+      const description = document.getElementById("wh-desc").value.trim();
+
+      if (!url) {
+        showToast("Masukkan URL Webhook Discord terlebih dahulu!");
+        return;
+      }
+
+      try {
+        const res = await fetch(url, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            username: "Saltoria Studio Hub",
+            embeds: [{
+              title: title,
+              description: description,
+              color: 61695
+            }]
+          })
+        });
+        if (res.ok) {
+          showToast("Webhook berhasil terkirim ke Discord!");
+        } else {
+          showToast("Gagal mengirim: Periksa kembali URL Webhook.");
+        }
+      } catch (err) {
+        showToast("Terjadi kesalahan jaringan / CORS pada URL Webhook.");
+      }
+    }
+  </script>
+</body>
+</html>

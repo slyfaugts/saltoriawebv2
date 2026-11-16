@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Studio Batch Command Generator — Saltoria Tools</title>
+  <link rel="stylesheet" href="/assets/css/design-system.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <aside id="saltoria-sidebar" class="sidebar"></aside>
+    <div class="main-wrapper">
+      <header id="saltoria-topbar" class="topbar"></header>
+      <main class="content-area">
+        <div class="page-header">
+          <div>
+            <h1 class="page-title">Studio Batch Command Generator</h1>
+            <p class="page-desc">Buat skrip Roblox Studio Command Bar untuk pemasangan CollectionService Tag & optimasi performa mobile secara massal.</p>
+          </div>
+          <span class="tag tag-purple">CollectionService & Optimization</span>
+        </div>
+
+        <div class="grid-2col">
+          <div class="card">
+            <div class="card-header">
+              <h2 class="card-title">Konfigurasi Batch</h2>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Pilih Aksi Otomasi</label>
+              <select id="cmd-mode" class="form-select" onchange="generateStudioCommand()">
+                <option value="tag">Pasang CollectionService Tag ke Selection</option>
+                <option value="optimize">Optimasi Low-End / Mobile (Disable Shadow & Performance Mesh)</option>
+                <option value="anchor">Anchor & CanCollide Batch pada Selection</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Nama Tag (Khusus Mode Tagging)</label>
+              <input type="text" id="tag-name" class="form-control" value="SLTR_Checkpoint" oninput="generateStudioCommand()" />
+            </div>
+            <button onclick="generateStudioCommand()" class="btn btn-primary" style="width:100%;">🛠️ Generate Command Bar Script</button>
+          </div>
+
+          <div class="card">
+            <div class="card-header">
+              <h2 class="card-title">Skrip Command Bar</h2>
+              <button onclick="copyTextToClipboard('cmd-output', 'Command Bar Script')" class="btn btn-purple" style="padding:5px 12px;min-height:32px;font-size:12px;">📋 Salin Skrip</button>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Tempel di Command Bar Roblox Studio</label>
+              <textarea id="cmd-output" class="form-textarea" rows="13" readonly></textarea>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+  <script src="/assets/js/app.js"></script>
+  <script>
+    initSaltoriaLayout("command-gen", "Tools / Studio Batch Command");
+
+    function generateStudioCommand() {
+      const mode = document.getElementById("cmd-mode").value;
+      const tagName = document.getElementById("tag-name").value.trim() || "SLTR_Tagged";
+      let code = "";
+
+      if (mode === "tag") {
+        code = `local Selection = game:GetService("Selection")
+local CollectionService = game:GetService("CollectionService")
+local count = 0
+
+for _, inst in ipairs(Selection:Get()) do
+    CollectionService:AddTag(inst, "${tagName}")
+    count += 1
+end
+
+print(string.format("[Saltoria Batch] Berhasil menambahkan tag '${tagName}' ke %d instance.", count))`;
+      } else if (mode === "optimize") {
+        code = `local Selection = game:GetService("Selection")
+local count = 0
+
+for _, root in ipairs(Selection:Get()) do
+    for _, obj in ipairs(root:GetDescendants()) do
+        if obj:IsA("BasePart") then
+            obj.CastShadow = false
+            count += 1
+        end
+        if obj:IsA("MeshPart") then
+            obj.RenderFidelity = Enum.RenderFidelity.Performance
+        end
+    end
+end
+
+print(string.format("[Saltoria Optimizer] Berhasil mengoptimasi %d part untuk mobile.", count))`;
+      } else {
+        code = `local Selection = game:GetService("Selection")
+local count = 0
+
+for _, root in ipairs(Selection:Get()) do
+    for _, obj in ipairs(root:GetDescendants()) do
+        if obj:IsA("BasePart") then
+            obj.Anchored = true
+            obj.CanCollide = true
+            count += 1
+        end
+    end
+end
+
+print(string.format("[Saltoria Batch] Anchored & CanCollide aktif pada %d BasePart.", count))`;
+      }
+
+      document.getElementById("cmd-output").value = code;
+    }
+
+    generateStudioCommand();
+  </script>
+</body>
+</html>
